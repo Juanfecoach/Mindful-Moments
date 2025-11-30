@@ -1,0 +1,255 @@
+import React, { useState, useEffect } from 'react';
+import { Bell, Heart, Sparkles, Moon, Sun, Coffee, Sunset } from 'lucide-react';
+
+const MindfulMomentsApp = () => {
+  const [notifications, setNotifications] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState(null);
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [dailySchedule, setDailySchedule] = useState([]);
+
+  const questions = {
+    morning: [
+      "¿Cuál ha sido tu primer pensamiento al despertar?",
+      "¿Qué intención quieres poner en este nuevo día?",
+      "¿Cómo te sientes física y emocionalmente esta mañana?",
+      "¿Qué esperas aprender o descubrir hoy?",
+      "¿Qué puede hacer hoy tu yo del futuro agradecer?"
+    ],
+    midday: [
+      "¿Qué quisieras hacer mejor hoy? ¿Cuáles son los pasos para lograrlo?",
+      "¿Cómo ha sido tu mañana? ¿Qué ajustes necesitas hacer?",
+      "¿Estás siendo amable contigo mismo/a en este momento?",
+      "¿Qué pequeño logro has tenido hasta ahora?",
+      "¿Necesitas hacer una pausa y respirar profundo?"
+    ],
+    afternoon: [
+      "¿Cuáles emociones llevo en este momento y cómo las gestionaré?",
+      "¿Qué ha sido lo más significativo de tu día hasta ahora?",
+      "¿Hay algo que necesites soltar antes de que termine el día?",
+      "¿Cómo puedes hacer de las próximas horas algo especial?",
+      "¿Qué conversación pendiente te gustaría tener?"
+    ],
+    night: [
+      "Piensa en tres cosas por las cuales te sientes agradecido antes de dormir",
+      "¿Qué aprendiste sobre ti mismo/a hoy?",
+      "¿Qué momento del día te gustaría recordar?",
+      "¿Cómo puedes prepararte para un mejor descanso esta noche?",
+      "¿Qué te gustaría dejar ir antes de dormir?"
+    ]
+  };
+
+  const timeRanges = {
+    morning: { start: 6, end: 9 },
+    midday: { start: 11, end: 13 },
+    afternoon: { start: 15, end: 18 },
+    night: { start: 20, end: 22 }
+  };
+
+  const getRandomTime = (start, end) => {
+    const hour = Math.floor(Math.random() * (end - start + 1)) + start;
+    const minute = Math.floor(Math.random() * 60);
+    return { hour, minute };
+  };
+
+  const getRandomQuestion = (timeOfDay) => {
+    const questionList = questions[timeOfDay];
+    return questionList[Math.floor(Math.random() * questionList.length)];
+  };
+
+  const generateDailySchedule = () => {
+    const schedule = [];
+    Object.keys(timeRanges).forEach(period => {
+      const { hour, minute } = getRandomTime(timeRanges[period].start, timeRanges[period].end);
+      schedule.push({
+        period,
+        hour,
+        minute,
+        question: getRandomQuestion(period),
+        time: `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`
+      });
+    });
+    return schedule.sort((a, b) => (a.hour * 60 + a.minute) - (b.hour * 60 + b.minute));
+  };
+
+  useEffect(() => {
+    const schedule = generateDailySchedule();
+    setDailySchedule(schedule);
+  }, []);
+
+  const requestNotificationPermission = async () => {
+    if ('Notification' in window) {
+      const permission = await Notification.requestPermission();
+      if (permission === 'granted') {
+        setNotificationsEnabled(true);
+        scheduleNotifications();
+      }
+    } else {
+      alert('Tu navegador no soporta notificaciones. Para usar esta app en tu celular, guárdala en tu pantalla de inicio.');
+    }
+  };
+
+  const scheduleNotifications = () => {
+    const schedule = generateDailySchedule();
+    setDailySchedule(schedule);
+    
+    alert('¡Notificaciones configuradas! Recibirás 4 recordatorios diarios en horarios aleatorios.');
+  };
+
+  const showNotification = (question) => {
+    setCurrentQuestion(question);
+    if (notificationsEnabled && 'Notification' in window && Notification.permission === 'granted') {
+      new Notification('Momento de Reflexión 🌟', {
+        body: question,
+        icon: '🧘',
+        badge: '🧘'
+      });
+    }
+  };
+
+  const getPeriodIcon = (period) => {
+    switch(period) {
+      case 'morning': return <Sun className="w-6 h-6 text-amber-500" />;
+      case 'midday': return <Coffee className="w-6 h-6 text-orange-500" />;
+      case 'afternoon': return <Sunset className="w-6 h-6 text-rose-500" />;
+      case 'night': return <Moon className="w-6 h-6 text-indigo-500" />;
+      default: return <Sparkles className="w-6 h-6" />;
+    }
+  };
+
+  const getPeriodName = (period) => {
+    const names = {
+      morning: 'Mañana',
+      midday: 'Mediodía',
+      afternoon: 'Tarde',
+      night: 'Noche'
+    };
+    return names[period];
+  };
+
+  const formatTime12h = (time) => {
+    const [hour, minute] = time.split(':');
+    const h = parseInt(hour);
+    const period = h >= 12 ? 'PM' : 'AM';
+    const hour12 = h > 12 ? h - 12 : h === 0 ? 12 : h;
+    return `${hour12}:${minute} ${period}`;
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 p-4">
+      <div className="max-w-md mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8 mt-6">
+          <div className="inline-block p-4 bg-white rounded-full shadow-lg mb-4">
+            <Heart className="w-12 h-12 text-rose-500" />
+          </div>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+            Mindful Moments
+          </h1>
+          <p className="text-gray-600 text-sm">Reflexiones diarias para tu bienestar</p>
+        </div>
+
+        {/* Enable Notifications Button */}
+        {!notificationsEnabled && (
+          <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <div className="text-center">
+              <Bell className="w-12 h-12 text-purple-500 mx-auto mb-4" />
+              <h2 className="text-xl font-semibold mb-2">Activa tus recordatorios</h2>
+              <p className="text-gray-600 text-sm mb-4">
+                Recibirás 4 notificaciones diarias en horarios aleatorios para reflexionar y conectar contigo mismo/a
+              </p>
+              <button
+                onClick={requestNotificationPermission}
+                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-pink-600 transition-all transform hover:scale-105 shadow-lg"
+              >
+                Activar Recordatorios
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Today's Schedule */}
+        {notificationsEnabled && dailySchedule.length > 0 && (
+          <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <div className="flex items-center gap-2 mb-4">
+              <Sparkles className="w-5 h-5 text-purple-500" />
+              <h2 className="text-lg font-semibold">Horarios de hoy</h2>
+            </div>
+            <div className="space-y-3">
+              {dailySchedule.map((item, index) => (
+                <div key={index} className="flex items-start gap-3 p-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl">
+                  <div className="mt-1">{getPeriodIcon(item.period)}</div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="font-semibold text-sm text-gray-700">{getPeriodName(item.period)}</span>
+                      <span className="text-xs text-gray-500">•</span>
+                      <span className="text-sm text-purple-600 font-medium">{formatTime12h(item.time)}</span>
+                    </div>
+                    <p className="text-sm text-gray-600">{item.question}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Current Question Display */}
+        {currentQuestion && (
+          <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl shadow-2xl p-6 mb-6 text-white">
+            <div className="text-center">
+              <Sparkles className="w-10 h-10 mx-auto mb-4 opacity-90" />
+              <h3 className="text-lg font-semibold mb-3">Momento de Reflexión</h3>
+              <p className="text-lg leading-relaxed">{currentQuestion}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Test Notification Button */}
+        {notificationsEnabled && (
+          <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+            <button
+              onClick={() => showNotification(getRandomQuestion('morning'))}
+              className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 px-6 rounded-xl font-medium transition-all"
+            >
+              Probar notificación
+            </button>
+          </div>
+        )}
+
+        {/* Info Section */}
+        <div className="bg-white rounded-2xl shadow-lg p-6">
+          <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+            <Heart className="w-5 h-5 text-rose-500" />
+            ¿Cómo funciona?
+          </h3>
+          <ul className="space-y-2 text-sm text-gray-600">
+            <li className="flex gap-2">
+              <span className="text-purple-500">✓</span>
+              <span>4 notificaciones diarias en horarios aleatorios</span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-purple-500">✓</span>
+              <span>Preguntas diseñadas para cada momento del día</span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-purple-500">✓</span>
+              <span>Completamente gratis y fácil de compartir</span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-purple-500">✓</span>
+              <span>Nuevos horarios cada día para mantener la frescura</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Footer */}
+        <div className="text-center mt-8 mb-4">
+          <p className="text-xs text-gray-500">
+            Hecho con 💜 para tu bienestar emocional
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MindfulMomentsApp;
