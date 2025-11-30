@@ -17,8 +17,8 @@
             <!-- Header -->
             <div class="text-center mb-8 mt-6">
                 <div class="inline-block p-4 bg-white rounded-full shadow-lg mb-4">
-                    <svg class="w-12 h-12 text-rose-500" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    <svg class="w-12 h-12 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C10.9 2 10 2.9 10 4V6.29C7.12 7.14 5 9.82 5 13C5 15.65 6.53 17.93 8.74 19.12C8.16 18.5 7.5 17.5 7.5 16.5C7.5 14.5 9 13 11 13H13C15 13 16.5 14.5 16.5 16.5C16.5 17.5 15.84 18.5 15.26 19.12C17.47 17.93 19 15.65 19 13C19 9.82 16.88 7.14 14 6.29V4C14 2.9 13.1 2 12 2M11.5 8C11.78 8 12 8.22 12 8.5V12.5C12 12.78 11.78 13 11.5 13C11.22 13 11 12.78 11 12.5V8.5C11 8.22 11.22 8 11.5 8M12.5 8C12.78 8 13 8.22 13 8.5V12.5C13 12.78 12.78 13 12.5 13C12.22 13 12 12.78 12 12.5V8.5C12 8.22 12.22 8 12.5 8M9 16C9 16 9 16.5 9.5 17.5C10 18.5 11 19.36 12 20C13 19.36 14 18.5 14.5 17.5C15 16.5 15 16 15 16H9Z"/>
                     </svg>
                 </div>
                 <h1 class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
@@ -75,8 +75,8 @@
             <!-- Info Section -->
             <div class="bg-white rounded-2xl shadow-lg p-6">
                 <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
-                    <svg class="w-5 h-5 text-rose-500" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    <svg class="w-5 h-5 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C10.9 2 10 2.9 10 4V6.29C7.12 7.14 5 9.82 5 13C5 15.65 6.53 17.93 8.74 19.12C8.16 18.5 7.5 17.5 7.5 16.5C7.5 14.5 9 13 11 13H13C15 13 16.5 14.5 16.5 16.5C16.5 17.5 15.84 18.5 15.26 19.12C17.47 17.93 19 15.65 19 13C19 9.82 16.88 7.14 14 6.29V4C14 2.9 13.1 2 12 2M11.5 8C11.78 8 12 8.22 12 8.5V12.5C12 12.78 11.78 13 11.5 13C11.22 13 11 12.78 11 12.5V8.5C11 8.22 11.22 8 11.5 8M12.5 8C12.78 8 13 8.22 13 8.5V12.5C13 12.78 12.78 13 12.5 13C12.22 13 12 12.78 12 12.5V8.5C12 8.22 12.22 8 12.5 8M9 16C9 16 9 16.5 9.5 17.5C10 18.5 11 19.36 12 20C13 19.36 14 18.5 14.5 17.5C15 16.5 15 16 15 16H9Z"/>
                     </svg>
                     ¿Cómo funciona?
                 </h3>
@@ -112,32 +112,52 @@
     <script>
         const questions = {
             morning: [
-                "¿Cuál ha sido tu primer pensamiento al despertar?",
-                "¿Qué intención quieres poner en este nuevo día?",
-                "¿Cómo te sientes física y emocionalmente esta mañana?",
-                "¿Qué esperas aprender o descubrir hoy?",
-                "¿Qué puede hacer hoy tu yo del futuro agradecer?"
+                "Observa tu primer pensamiento del día sin juzgarlo. ¿Viene desde el miedo o desde el amor? Escribe en una frase qué emoción predomina en ti ahora mismo.",
+                "Antes de revisar tu teléfono o redes sociales, cierra los ojos 30 segundos. ¿Qué sensación física notas en tu cuerpo? Respira profundo 3 veces y nómbrala en voz alta.",
+                "¿Qué historia te estás contando sobre este día que aún no ha comenzado? Cuestiona si es verdad o una suposición. Reescríbela en positivo.",
+                "Identifica una emoción incómoda que estés sintiendo ahora. En lugar de evitarla, dale la bienvenida. Pregúntale: ¿qué necesitas que sepa? Escucha en silencio.",
+                "Nota si hay tensión en tu mandíbula, hombros o estómago. Respira hacia esa zona 5 veces. ¿Qué preocupación está viviendo ahí? Dale un nombre.",
+                "¿Estás despertando con ansiedad por el futuro o culpa por el pasado? Regresa al presente: nombra 3 cosas que VES, 2 que ESCUCHAS y 1 que SIENTES físicamente.",
+                "Antes de planear tu día, pregúntate: ¿Qué realmente importa HOY? Elige UNA cosa que esté alineada con tus valores y comprométete con ella, sin importar lo demás.",
+                "Observa tu diálogo interno esta mañana. ¿Te hablas como le hablarías a alguien que amas? Si no, corrige UNA frase negativa y repítela con compasión.",
+                "¿Qué emoción estás evitando sentir hoy? Permítete sentirla durante 60 segundos completos, sin distraerte. Luego suéltala con una exhalación profunda.",
+                "Cierra los ojos y visualiza tu yo de esta noche mirando hacia atrás. ¿Qué decisión tomarías hoy que te haría sentir orgulloso/a? Anótala y actúa en ella."
             ],
             midday: [
-                "¿Qué quisieras hacer mejor hoy? ¿Cuáles son los pasos para lograrlo?",
-                "¿Cómo ha sido tu mañana? ¿Qué ajustes necesitas hacer?",
-                "¿Estás siendo amable contigo mismo/a en este momento?",
-                "¿Qué pequeño logro has tenido hasta ahora?",
-                "¿Necesitas hacer una pausa y respirar profundo?"
+                "Detente completamente por 2 minutos. Observa qué pensamientos están dominando tu mente ahora. ¿Son sobre el pasado, futuro o presente? Redirige tu atención a TU RESPIRACIÓN.",
+                "¿Estás operando desde el piloto automático o con consciencia? Identifica UNA acción que hayas hecho sin pensar y repítela con atención plena ahora.",
+                "Nota qué emoción predomina en este momento: ¿prisa, frustración, alegría, cansancio? No la cambies, solo RECONÓCELA. Di en voz alta: 'Estoy sintiendo _____'.",
+                "¿Has comido, tomado agua y respirado profundo hoy? Haz una pausa: bebe agua lentamente, respira 5 veces conscientemente. Tu cuerpo es tu ancla al presente.",
+                "Identifica un pensamiento repetitivo que llevas desde la mañana. Pregúntate: ¿este pensamiento me está sirviendo? Si no, SUÉLTALO. Visualiza cómo se va como una nube.",
+                "¿Estás tratando de controlar algo que no puedes cambiar? Haz una lista mental de lo que SÍ controlas ahora. Elige UNA acción dentro de tu control y hazla.",
+                "Revisa tu postura: ¿cómo están tus hombros, tu cuello, tu respiración? Haz 3 respiraciones profundas y estira tu cuerpo. La tensión física revela tensión mental.",
+                "¿Has estado reaccionando o respondiendo? Piensa en tu última interacción. ¿Actuaste desde la consciencia o desde un patrón automático? Reflexiona 30 segundos.",
+                "Si tu día fuera un color ahora mismo, ¿cuál sería? ¿Por qué? Pregúntate qué necesitas para sentirte más equilibrado/a y haz UNA cosa pequeña al respecto.",
+                "Observa si estás comparando tu realidad con expectativas irreales. Suelta la perfección. Pregúntate: ¿Qué está yendo BIEN ahora mismo? Enumera 3 cosas."
             ],
             afternoon: [
-                "¿Cuáles emociones llevo en este momento y cómo las gestionaré?",
-                "¿Qué ha sido lo más significativo de tu día hasta ahora?",
-                "¿Hay algo que necesites soltar antes de que termine el día?",
-                "¿Cómo puedes hacer de las próximas horas algo especial?",
-                "¿Qué conversación pendiente te gustaría tener?"
+                "Antes de que el día termine, identifica UNA conversación difícil que has evitado. ¿Qué miedo hay detrás? Nómbralo. Decide si necesitas actuar o soltar.",
+                "Observa tu nivel de energía. ¿Estás agotado/a o revitalizado/a? Identifica qué actividad o persona te drenó hoy. ¿Puedes poner un límite más claro mañana?",
+                "¿Hay algo que necesites perdonar de hoy (a ti o a alguien más)? Cierra los ojos, siente la carga emocional y conscientemente ELIGE soltarla con tu exhalación.",
+                "Reflexiona: ¿actuaste hoy según tus valores o según las expectativas de otros? Si hubo un momento de desalineación, reconócelo sin juicio. Anota qué harías diferente.",
+                "¿Qué historia estás repitiendo sobre ti mismo/a hoy? ('Siempre hago esto mal', 'Nunca tendré tiempo'). Desafíala. Escribe UNA evidencia de lo contrario.",
+                "Observa si cargaste la energía emocional de otros. ¿Adoptaste el estrés, la prisa o el mal humor de alguien más? Respira y suéltalo: no es tuyo.",
+                "Haz un escaneo corporal rápido: ¿dónde sientes tensión acumulada? Dedica 2 minutos a masajear esa zona mientras respiras profundo. Libera la tensión física.",
+                "¿Hay algo pendiente que esté consumiendo tu energía mental? Decide AHORA: o lo haces, lo agendas para mañana, o lo sueltas. El espacio mental es valioso.",
+                "Identifica una pequeña victoria de hoy que pasaste por alto. Celebra ese logro por 30 segundos, aunque sea mínimo. El reconocimiento crea momentum positivo.",
+                "Si tuvieras que enseñarle algo a alguien sobre lo que viviste hoy, ¿qué lección compartirías? Anótala. Esa sabiduría es tu regalo del día."
             ],
             night: [
-                "Piensa en tres cosas por las cuales te sientes agradecido antes de dormir",
-                "¿Qué aprendiste sobre ti mismo/a hoy?",
-                "¿Qué momento del día te gustaría recordar?",
-                "¿Cómo puedes prepararte para un mejor descanso esta noche?",
-                "¿Qué te gustaría dejar ir antes de dormir?"
+                "Antes de dormir, pregúntate: ¿Qué emoción no procesé hoy que sigue dentro de mí? Permítete sentirla completamente por 2 minutos. Luego respira y suéltala.",
+                "Haz un balance honesto: ¿pasé más tiempo preocupándome o viviendo? Si la preocupación ganó, identifica UNA acción que puedas tomar mañana para cambiar eso.",
+                "Revisa si fuiste amable contigo hoy. Si no lo fuiste, escribe UNA frase compasiva que te dirías si fueras tu mejor amigo/a. Léela en voz alta antes de dormir.",
+                "Enumera 3 momentos de hoy por los que te sientes genuinamente agradecido/a. Pueden ser pequeños. Siente la gratitud en tu pecho mientras los recuerdas.",
+                "¿Hay algo que dijiste o hiciste hoy que no esté alineado con quien quieres ser? Reconócelo sin culpa. Pregúntate: ¿Qué haré diferente mañana?",
+                "Observa tu cuerpo: ¿dónde llevas la tensión del día? Haz un escaneo de pies a cabeza. Respira hacia cada zona tensa y visualiza cómo se relaja.",
+                "Antes de revisar redes sociales o pantallas, cierra los ojos. ¿Qué necesitas REALMENTE ahora: conexión, descanso, silencio? Date eso en lugar de distracción.",
+                "Identifica un patrón que se repitió hoy (ej: postergar, compararte, reaccionar). Sin juzgarte, pregúntate: ¿Qué necesidad no atendida hay detrás? Reflexiona en silencio.",
+                "Si hoy fuera la última página de un capítulo de tu vida, ¿qué frase escribirías para cerrarlo? Anótala. Mañana comienza un nuevo capítulo: ¿cómo quieres que inicie?",
+                "Suelta las expectativas de lo que 'debió ser' hoy. Lo que fue, fue perfecto para tu aprendizaje. Haz 5 respiraciones profundas y repite: 'Suelto el control. Confío en el proceso.'"
             ]
         };
 
@@ -232,7 +252,7 @@
             document.getElementById('questionSection').classList.remove('hidden');
             
             if (notificationsEnabled && 'Notification' in window && Notification.permission === 'granted') {
-                new Notification('Momento de Reflexión 🌟', {
+                new Notification('Momento de Reflexión 🧘', {
                     body: question,
                     icon: '🧘'
                 });
