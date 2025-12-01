@@ -43,15 +43,21 @@
                 </div>
             </div>
 
-            <!-- Today's Schedule -->
-            <div id="scheduleSection" class="bg-white rounded-2xl shadow-lg p-6 mb-6 hidden">
-                <div class="flex items-center gap-2 mb-4">
-                    <svg class="w-5 h-5 text-purple-500" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M5 3a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2H5zm7 2l4.95 7.5L12 20l-4.95-7.5L12 5z"/>
+            <!-- Confirmation Message -->
+            <div id="confirmationSection" class="bg-white rounded-2xl shadow-lg p-6 mb-6 hidden">
+                <div class="text-center">
+                    <svg class="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
-                    <h2 class="text-lg font-semibold">Horarios de hoy</h2>
+                    <h2 class="text-xl font-semibold mb-2 text-gray-800">¡Recordatorios activados! ✨</h2>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Recibirás 4 reflexiones sorpresa hoy en momentos aleatorios. Mantén las notificaciones activas.
+                    </p>
+                    <div class="bg-purple-50 rounded-xl p-4 text-left">
+                        <p class="text-sm text-gray-700 mb-2">📱 <strong>Consejo:</strong></p>
+                        <p class="text-xs text-gray-600">Cuando llegue cada notificación, tómate unos minutos para reflexionar honestamente. El poder está en la pausa consciente.</p>
+                    </div>
                 </div>
-                <div id="scheduleList" class="space-y-3"></div>
             </div>
 
             <!-- Current Question -->
@@ -182,21 +188,6 @@
             return questionList[Math.floor(Math.random() * questionList.length)];
         }
 
-        function generateDailySchedule() {
-            const schedule = [];
-            Object.keys(timeRanges).forEach(period => {
-                const { hour, minute } = getRandomTime(timeRanges[period].start, timeRanges[period].end);
-                schedule.push({
-                    period,
-                    hour,
-                    minute,
-                    question: getRandomQuestion(period),
-                    time: `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`
-                });
-            });
-            return schedule.sort((a, b) => (a.hour * 60 + a.minute) - (b.hour * 60 + b.minute));
-        }
-
         function getPeriodIcon(period) {
             const icons = {
                 morning: '<svg class="w-6 h-6 text-amber-500" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v6m0 6v6m8.66-11.66l-4.24 4.24M7.58 7.58L3.34 3.34m0 17.32l4.24-4.24m9.08 0l4.24 4.24M23 12h-6m-6 0H1"/></svg>',
@@ -267,10 +258,9 @@
                     dailySchedule = generateDailySchedule();
                     
                     document.getElementById('enableSection').classList.add('hidden');
-                    document.getElementById('scheduleSection').classList.remove('hidden');
+                    document.getElementById('confirmationSection').classList.remove('hidden');
                     document.getElementById('testSection').classList.remove('hidden');
                     
-                    displaySchedule();
                     scheduleNotifications();
                 }
             } else {
